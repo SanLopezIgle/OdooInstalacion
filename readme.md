@@ -40,6 +40,36 @@ volumes:
   odoo_data:
 ```
 
+### Configuración de PostgreSQL (`db` service)
+
+- `image: postgres:latest`: Este servicio utiliza la imagen Docker oficial de PostgreSQL en su última versión disponible.
+
+- `environment`: Define variables de entorno para configurar la base de datos PostgreSQL:
+  - `POSTGRES_DB`: El nombre de la base de datos que se creará.
+  - `POSTGRES_USER`: El nombre de usuario para acceder a la base de datos.
+  - `POSTGRES_PASSWORD`: La contraseña del usuario de la base de datos.
+
+- `ports`: Mapea el puerto `5432` del contenedor PostgreSQL al puerto `5432` del host, lo que permite acceder a la base de datos PostgreSQL desde el exterior.
+
+- `volumes`: Define un volumen persistente para almacenar los datos de PostgreSQL en el host, garantizando que los datos no se pierdan incluso si el contenedor se detiene o elimina.
+
+### Configuración de Odoo (`odoo` service)
+
+- `image: odoo:latest`: Este servicio utiliza la imagen Docker oficial de Odoo en su última versión disponible.
+
+- `depends_on`: Define que este servicio depende del servicio `db` (PostgreSQL). Esto asegura que el contenedor de Odoo se inicie después de que el contenedor de PostgreSQL esté en funcionamiento.
+
+- `ports`: Mapea el puerto `8069` del contenedor Odoo al puerto `8069` del host, lo que permite acceder a la interfaz web de Odoo desde el exterior.
+
+- `volumes`: Monta un volumen local en el contenedor Odoo, permitiendo la persistencia de los addons personalizados en la carpeta `addons/`.
+
+### Volumenes
+
+- `db_data`: Este volumen almacena los datos persistentes de PostgreSQL en el host.
+
+- `odoo_data`: Aunque este volumen está definido, no se utiliza en la configuración actual. Podría ser útil para almacenar datos persistentes de Odoo si fuera necesario en futuras iteraciones del proyecto.
+
+
 ## Ejecución de los Contenedores
 
 
