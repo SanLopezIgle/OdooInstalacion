@@ -91,3 +91,11 @@ Para enlazar PyCharm con Docker y la base de datos PostgreSQL, sigue los siguien
 ## ¿Qué hacer si el puerto 5432 está ocupado?
 
 Si el puerto `5432` está ocupado en tu ordenador local, puedes solucionarlo modificando el mapeo de puertos en el archivo `docker-compose.yml`. Cambia el puerto del servicio PostgreSQL en el host a uno disponible en tu máquina.
+
+Después de hacer la configuración definida antes, desde el navegor abrimos odoo (localhost:8069) y nos debería aparecer en pantalla esta imagen.
+
+![PrimaVistaOdoo](odoo.png)
+
+Rellenaremos todos los campos con los datos que nosotros queramos nos pedirá el mail y contraseña y por fin tendremos Odoo en nuestro navegador para empezar a trabajar.
+
+![InicioOdoo](inicioOdoo.png)
